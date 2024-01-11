@@ -1,0 +1,51 @@
+<%- include("partials/header.ejs") %>
+
+<div class="main-info">
+    <% if (data.original_title != undefined) { %>
+        <h1><%= data.original_title %></h1>
+    <% }else { %> 
+        <h1><%= data.original_name %></h1>
+        <%} %>
+    <div class="mediaInfo_container">
+        <div class="mediaImage">
+            <img src="<%= data.backdrop_path? image + data.backdrop_path : "https://images.unsplash.com/photo-1704541511023-4d16e2b5192c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8" %>" alt="media image">
+        </div>
+        <div class="mediaInfo">
+            <p>Title Name  : <%= data.original_title ? data.original_title : data.original_name %></p>
+            <p>ID : <%= data.id %></p>
+            <p>Rating : <%= data.vote_average %></p>
+            <p>Tagline :<%= data.tagline %> </p>
+            <p>Homepage : <%=data.homepage? data.homepage : "none" %></p>
+            <p>Original language : <%= data.original_language %></p>
+            <p>Release Date : <%= data.release_date %></p>
+            <p>Spoken languages:  <% for( let i = 0; i < data.spoken_languages.length; i++ ) { %>
+                    <%= data.spoken_languages[i].english_name  %> ,
+            <% } %></p>
+            <p>Status : <%= data.status? data.status : "none"%></p>
+            <p>Runtime : <%= data.runtime %>m</p>
+            <p>Revenue : $<%= data.revenue %></p>
+        </div>
+    </div>
+    <div class="otherInfo">
+        <p>Overview : <%= data.overview %></p>
+        <p>Genres : <% for( let i = 0; i < data.genres.length; i++ ) { %>
+            <%= data.genres? data.genres[i].name : "none" %> ,
+        <% } %></p>
+        <p>Popularity : <%= data.popularity %></p>
+        <div class="production-companies">
+            <% for( let i = 0; i < data.production_companies.length; i++ ) { %>
+                <div>
+                    <img src="<%= data.production_companies[i].logo_path? "http://image.tmdb.org/t/p/w154" + data.production_companies[i].logo_path : "/images/images.jpg"  %>" alt="company logo">
+                    <p>Name : <%= data.production_companies[i].name%></p>
+                    <p>Origin country: <%= data.production_companies[i].origin_country %></p>
+                </div>
+            
+            <% } %>
+        </div>
+    </div>
+ 
+</div>
+
+
+
+<%-include("partials/footer.ejs") %>

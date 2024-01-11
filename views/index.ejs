@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs") %>
+
+
+<main class="container">
+    <h1>Welcome to TV Show/Movies guide...</h1>
+    <div class="bothMedia-container">
+        <div class="movie-container">
+            <h2>Movies: </h2>
+            
+            <form class="movieLinks" action="/movieId-name" method="post">
+                <% for( let i = 0; i < data.results.length; i++ ) { %>
+                    <button type="submit" name="id1" value="<%= data.results[i].id %>"><img src= "<%= image + data.results[i].backdrop_path %>" alt="movie images">
+                        <p><%= data.results[i].original_title  %></p>                       
+                    </button>    
+                <% } %>
+            </form>
+            
+            <div class="page-no-edit">
+                <a href="/previousPage-movie">Prev</a> <p>page no:- <%=  data.page %></p> <a href="/nextPage-movie">Next</a>
+            </div>
+        </div>
+        <div class="tv-show-container">
+            <h2>TV Shows: </h2>
+            
+            <form class="tv-show-links" action="/tvShowId-name" method="post">
+                <% for( let i = 0; i < tvData.results.length; i++ ) { %>
+                    <button type="submit" name="id1" value="<%= tvData.results[i].id %>"><img src= "<%= image + tvData.results[i].backdrop_path %>" alt="movie images">
+                        <p><%= tvData.results[i].original_name  %></p>                       
+                    </button>
+                    
+                <% } %>
+            </form>
+            <div class="page-no-edit">
+                <a href="/previousPage-tvShow">Prev</a> <p>page no:- <%=  tvData.page %></p> <a href="/nextPage-tvShow">Next</a>
+            </div>
+            
+        </div>
+    </div>
+</main>
+
+
+
+
+<%-include("partials/footer.ejs") %>
