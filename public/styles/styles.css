@@ -166,16 +166,25 @@ a{
 }
 
 button  {
-    background-color: #ffffff50;
+    background: none;
+    /* background-color: #ffffff50; */
     font-size: 15pt;
     font-family: 'Roboto Condensed', sans-serif;
     color: aliceblue;
     border-radius: 10%;
-    border-color:aquamarine;
+    /* border-color:aquamarine; */
+    border: none;
+    
 }
 button > img {
     border-radius: 10%;
 }
+
+.hover  :hover {
+    transition: 1s;
+    transform: scale(1.1);
+}
+
 
 
 #app > footer {
@@ -183,6 +192,7 @@ button > img {
     text-align: center;
     padding: 20px;
     font-size: large;
+    
     
 }
 

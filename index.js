@@ -142,39 +142,39 @@ app.get("/previousPage-Search" , async (req , res) =>{
     }
 })
 
+//this  code is commented cause i found a way around this and use the same POST method for receiving info.. i.e "/searchedId-name/:type"
 
+// app.post("/movieId-name" , async (req , res) =>{
+//     let newId = req.body.id1;
+//     console.log(newId);
+//     let mediaImage = "https://image.tmdb.org/t/p/w780"
+//     try {
+//         const result = await axios.get(`https://api.themoviedb.org/3/movie/${newId}?language=en-US` , config)
+//         console.log(result.data);
+//         res.render("movies-info.ejs" , {
+//             data : result.data,
+//             image : mediaImage
+//         } )
+//     } catch (error) {
+//         res.status(404).send(error.response.data);
+//     }
+// });
 
-app.post("/movieId-name" , async (req , res) =>{
-    let newId = req.body.id1;
-    console.log(newId);
-    let mediaImage = "https://image.tmdb.org/t/p/w780"
-    try {
-        const result = await axios.get(`https://api.themoviedb.org/3/movie/${newId}?language=en-US` , config)
-        console.log(result.data);
-        res.render("movies-info.ejs" , {
-            data : result.data,
-            image : mediaImage
-        } )
-    } catch (error) {
-        res.status(404).send(error.response.data);
-    }
-});
-
-app.post("/tvShowId-name" , async (req , res) =>{
-    let newId = req.body.id1;
-    console.log(newId);
-    let mediaImage = "https://image.tmdb.org/t/p/w780"
-    try {
-        const result = await axios.get(`https://api.themoviedb.org/3/tv/${newId}?language=en-US` , config)
-        console.log(result.data);
-        res.render("movies-info.ejs" , {
-            data : result.data,
-            image : mediaImage
-        } )
-    } catch (error) {
-        res.status(404).send(error.response.data);
-    }
-});
+// app.post("/tvShowId-name" , async (req , res) =>{
+//     let newId = req.body.id1;
+//     console.log(newId);
+//     let mediaImage = "https://image.tmdb.org/t/p/w780"
+//     try {
+//         const result = await axios.get(`https://api.themoviedb.org/3/tv/${newId}?language=en-US` , config)
+//         console.log(result.data);
+//         res.render("movies-info.ejs" , {
+//             data : result.data,
+//             image : mediaImage
+//         } )
+//     } catch (error) {
+//         res.status(404).send(error.response.data);
+//     }
+// });
 
 app.post("/searchedId-name/:type" , async (req , res) =>{
     let newId = req.body.id1;
