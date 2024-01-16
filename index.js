@@ -176,7 +176,7 @@ app.get("/previousPage-Search" , async (req , res) =>{
 //     }
 // });
 
-app.post("/searchedId-name/:type" , async (req , res) =>{
+app.post("/searchedId-name/:type/:id" , async (req , res) =>{
     let newId = req.body.id1;
     let type = req.params.type;
     let mediaImage = "https://image.tmdb.org/t/p/w780"

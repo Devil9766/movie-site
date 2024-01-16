@@ -6,7 +6,7 @@
             <h2>searched results: </h2>
             <div class="searchedLinks hover">
                 <% for( let i = 0; i < data.results.length; i++ ) { %>
-                <form  action=<%=`/searchedId-name/${data.results[i].original_title ? "movie" : "tv"}`%> method="post">
+                <form  action=<%=`/searchedId-name/${data.results[i].original_title ? "movie" : "tv"}/${data.results[i].id}`%> method="post">
                         <button type="submit" name="id1" value="<%= data.results[i].id %>"><img src=  "<%=data.results[i].backdrop_path? image + data.results[i].backdrop_path : "https://images.unsplash.com/photo-1704541511023-4d16e2b5192c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8" %>" alt="movie images">
                             <p><%= data.results[i].original_name ? data.results[i].original_name : data.results[i].original_title %></p>                      
                         </button>    
