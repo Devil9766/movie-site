@@ -196,7 +196,57 @@ app.post("/searchedId-name/:type/:id" , async (req , res) =>{
     }
 });
 
+let page = 1
+app.get("/now_playing" ,async (req, res) =>{
+    page = 1;
+    let movieUrl = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`
+    let tvUrl = `https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=${page}`
+    try {
+        const result = await axios.get(movieUrl , config);
+        const response = await axios.get(tvUrl , config)
+        res.render("now_playing.ejs" , {
+            data : result.data,
+            image : imageBaseUrl,
+            tvData : response.data
+        })
+    } catch (error) {
+        res.status(404).send(error.message.data);
+    }
+})
 
+app.get("/previousPage" , async (req , res) =>{
+    page -= 1 ;
+    let movieUrl = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`
+    let tvUrl = `https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=${page}`
+    try {
+        const result = await axios.get(movieUrl , config);
+        const response = await axios.get(tvUrl , config);
+        res.render("now_playing.ejs" , {
+            data : result.data,
+            image : imageBaseUrl,
+            tvData : response.data
+            });
+    } catch (error) {
+        res.status(404).send(error.response.data);
+    }
+});
+
+app.get("/nextPage" , async (req , res) =>{
+    page += 1 ;
+    let movieUrl = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`
+    let tvUrl = `https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=${page}`
+    try {
+        const result = await axios.get(movieUrl , config);
+        const response = await axios.get(tvUrl , config);
+        res.render("now_playing.ejs" , {
+            data : result.data,
+            image : imageBaseUrl,
+            tvData : response.data
+            });
+    } catch (error) {
+        console.log(error)
+    }
+});
 
 
 

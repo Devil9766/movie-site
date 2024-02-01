@@ -38,6 +38,10 @@ body {
     width: fit-content;
 }
 
+.searchBar{
+    display: flex;
+    gap: 20px;
+}
 
 .searchBar .text {
     width: 200px;
@@ -186,7 +190,42 @@ button > img {
     transform: scale(1.1);
 }
 
+.movie_nowPlaying{
+    display: grid;
+    grid-template-columns: repeat(4 , 20%);
+    grid-template-rows: auto;
+    font-size: large;
+    justify-content: center;
+    gap :30px;
+    min-width: fit-content;
+    
+}
 
+.tv_nowPlaying {
+    display: grid;
+    grid-template-columns: repeat(4 , 20%);
+    grid-template-rows: auto;
+    font-size: large;
+    justify-content: center;
+    gap :30px;
+    min-width: fit-content;
+}
+
+.now-playing img{
+    width: 100%;
+}
+
+.now-playing h2 {
+    text-align: center;
+    font-size: x-large;
+    padding: 10px;
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+    font-size: large;
+}
 
 #app > footer {
     grid-area: footer;
