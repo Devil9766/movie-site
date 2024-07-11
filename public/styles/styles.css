@@ -25,33 +25,42 @@ body {
 #app > header {
     grid-area: header;
     display: flex;
-    gap: 20px;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
     background-color: #ffffff50;
+    padding: 50px;
+    justify-content: space-around;
 }
-
-
-
-.big-title  p {
-    font-size: 2rem;
-    width: fit-content;
+.big-title{
+    font-size: 3rem;
 }
-
 .searchBar{
     display: flex;
-    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    /* width: 50%; */
+    gap: 50px;
 }
-
-.searchBar .text {
-    width: 200px;
-    height: 20px;
+.search-form{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5px;
 }
-
-.searchBar .mag{
+.text{
     height: 30px;
+    width: 400px;
+    border-radius: 50px;
+    border: 2px white solid;
+    background-color: #ffffff80;
+    padding: 5px 20px;
+    font-size: large;
+    color: white;
+    outline: none;
 }
 
+.mag{
+    border-radius: 50px;
+    border: none;
+}
 
 #app > main{
     grid-area: main;
