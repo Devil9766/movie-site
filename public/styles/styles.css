@@ -123,26 +123,25 @@ a{
 
 .search-container{
     
-    width: 100%;
+    
     text-align: center;
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
+    /* flex-flow: row wrap; */
     justify-content: center;
-}
-.page-no-edit{
-    align-self: last baseline;
+    align-items: center;
+    gap: 20px;
 }
 
 .searchedLinks {
-    display: grid;
-    width: fit-content;
-    grid-template-columns: repeat(4 , 20%);
+    display: grid;  
+    grid-template-columns: repeat(4 , 21%);
     grid-template-rows: auto;
     font-size: small;
     justify-content: center;
     gap :30px;
-    min-width: fit-content;
 }
+
 .search-container img {
     width: 100%;
 }
