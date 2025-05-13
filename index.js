@@ -56,9 +56,8 @@ app.get("/nextPage-movie", async (req, res)=>{
 })
 
 app.get("/previousPage-movie", async (req, res)=>{
-    if(moviePageNo > 1){
+        moviePageNo > 2 ? moviePageNo-=1 : moviePageNo = 1;
         try{
-            moviePageNo -=1;
             const result = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${moviePageNo}&sort_by=popularity.desc` , config);
             const tvShow = await axios.get(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=${tvShowPageNO}&sort_by=popularity.desc` , config);
             res.render("index.ejs" , {
@@ -68,19 +67,6 @@ app.get("/previousPage-movie", async (req, res)=>{
                 });
         }catch (error){
             res.status(404).send(error.response.data);
-        }}else{
-            try{
-                moviePageNo = 1;
-                const result = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${moviePageNo}&sort_by=popularity.desc` , config);
-                const tvShow = await axios.get(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=${tvShowPageNO}&sort_by=popularity.desc` , config);
-                res.render("index.ejs" , {
-                    data : result.data , 
-                    tvData : tvShow.data,
-                    image: imageBaseUrl,
-                    });
-                }catch (error){
-                    res.status(404).send(error.response.data);
-                }
         }
 })
 
@@ -100,9 +86,8 @@ app.get("/nextPage-tvShow", async (req, res)=>{
 })
 
 app.get("/previousPage-tvShow", async (req, res)=>{
-    if(tvShowPageNO > 1){
+        tvShowPageNO > 1 ? tvShowPageNO-=1 : tvShowPageNO =1;
         try{
-            tvShowPageNO -=1;
             const result = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${moviePageNo}&sort_by=popularity.desc` , config);
             const tvShow = await axios.get(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=${tvShowPageNO}&sort_by=popularity.desc` , config);
             res.render("index.ejs" , {
@@ -112,19 +97,6 @@ app.get("/previousPage-tvShow", async (req, res)=>{
                 });
         }catch (error){
             res.status(404).send(error.response.data);
-        }}else{
-            try{
-                tvShowPageNO = 1;
-                const result = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${moviePageNo}&sort_by=popularity.desc` , config);
-                const tvShow = await axios.get(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=${tvShowPageNO}&sort_by=popularity.desc` , config);
-                res.render("index.ejs" , {
-                    data : result.data , 
-                    tvData : tvShow.data,
-                    image: imageBaseUrl,
-                    });
-            }catch (error){
-                res.status(404).send(error.response.data);
-            }
         }
 })
 
@@ -158,7 +130,7 @@ app.get("/nextPage-Search" , async (req , res) =>{
 
 
 app.get("/previousPage-Search" , async (req , res) =>{
-    if(searchedPages > 1){
+        searchedPages > 1 ? searchedPages-=1: searchedPages =1;
         try {
             const result  = await axios.get(`https://api.themoviedb.org/3/search/multi?query=${mediaName}&include_adult=false&language=en-US&page=${searchedPages}` , config)
             res.render("search.ejs" , {
@@ -167,17 +139,6 @@ app.get("/previousPage-Search" , async (req , res) =>{
                 });
         } catch (error) {
             res.status(404).send(error.response.data);
-        }}else{
-            searchedPages = 1;
-            try {
-                const result  = await axios.get(`https://api.themoviedb.org/3/search/multi?query=${mediaName}&include_adult=false&language=en-US&page=${searchedPages}` , config)
-                res.render("search.ejs" , {
-                    data : result.data , 
-                    image: imageBaseUrl,
-                    });
-            } catch (error) {
-                res.status(404).send(error.response.data);
-            }
         }
     })
 
@@ -256,7 +217,7 @@ app.get("/now_playing" ,async (req, res) =>{
 app.get("/previousPage" , async (req , res) =>{
     let movieUrl = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${nowPlaying_page}`;
     let tvUrl = `https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=${nowPlaying_page}`;
-    if(nowPlaying_page > 1){
+    nowPlaying_page > 1 ? nowPlaying_page-=1 : nowPlaying_page = 1;
     try {
         const result = await axios.get(movieUrl , config);
         const response = await axios.get(tvUrl , config);
@@ -267,19 +228,6 @@ app.get("/previousPage" , async (req , res) =>{
             });
     } catch (error) {
         res.status(404).send(error.response.data);
-    }}else{
-        nowPlaying_page = 1
-        try {
-            const result = await axios.get(movieUrl , config);
-            const response = await axios.get(tvUrl , config);
-            res.render("now_playing.ejs" , {
-                data : result.data,
-                image : imageBaseUrl,
-                tvData : response.data
-                });
-        } catch (error) {
-            res.status(404).send(error.response.data);
-        }
     }
 });
 
